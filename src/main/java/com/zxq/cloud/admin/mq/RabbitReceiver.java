@@ -1,5 +1,6 @@
 package com.zxq.cloud.admin.mq;
 
+import cn.hutool.core.util.StrUtil;
 import com.zxq.cloud.admin.config.RabbitMqConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -19,16 +20,6 @@ public class RabbitReceiver {
     @RabbitListener(queues = RabbitMqConfig.MY_FIRST_QUEUE)
     public void processCpcSettleMessage(String json) {
         log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info(">>>>>>>接受到信息了<<<<<<");
-        log.info("队列已接受到信息===》{}",json);
+        log.info("队列已接受到信息===》{},成功消费",json);
     }
 }
