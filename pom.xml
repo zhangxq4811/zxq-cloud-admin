@@ -18,12 +18,24 @@
         <java.version>1.8</java.version>
         <com.alibaba.fastjson.version>1.2.7</com.alibaba.fastjson.version>
         <cn.hutool.hutool-all.version>5.0.7</cn.hutool.hutool-all.version>
+        <zxq-cloud-common.version>1.0.0.RELEASE</zxq-cloud-common.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 公共服务 -->
+        <dependency>
+            <groupId>com.zxq</groupId>
+            <artifactId>zxq-cloud-redis</artifactId>
+            <version>${zxq-cloud-common.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zxq</groupId>
+            <artifactId>zxq-cloud-fastdfs</artifactId>
+            <version>${zxq-cloud-common.version}</version>
         </dependency>
         <!-- springboot-rabbitmq -->
         <dependency>

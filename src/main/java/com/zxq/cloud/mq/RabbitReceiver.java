@@ -1,7 +1,6 @@
-package com.zxq.cloud.admin.mq;
+package com.zxq.cloud.mq;
 
-import cn.hutool.core.util.StrUtil;
-import com.zxq.cloud.admin.config.RabbitMqConfig;
+import com.zxq.cloud.config.RabbitMqConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

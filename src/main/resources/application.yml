@@ -6,3 +6,20 @@ spring:
     port: 5672
     username: guest
     password: guest
+  redis:
+    host: 47.102.98.244
+    port: 6379
+    password: 1234
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
+
+# 分布式文件系统FDFS配置
+# ===================================================================
+fdfs:
+  so-timeout: 1501
+  connect-timeout: 601
+  trackerList[0]: 172.19.30.196:22122

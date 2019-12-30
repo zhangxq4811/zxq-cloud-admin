@@ -1,8 +1,8 @@
-package com.zxq.cloud.admin.controller;
+package com.zxq.cloud.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zxq.cloud.admin.config.RabbitMqConfig;
-import com.zxq.cloud.admin.service.TaskService;
+import com.zxq.cloud.config.RabbitMqConfig;
+import com.zxq.cloud.service.TaskService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

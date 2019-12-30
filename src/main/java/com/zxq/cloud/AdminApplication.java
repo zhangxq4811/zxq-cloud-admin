@@ -1,4 +1,4 @@
-package com.zxq.cloud.admin;
+package com.zxq.cloud;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;

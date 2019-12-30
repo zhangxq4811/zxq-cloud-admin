@@ -1,7 +1,7 @@
-package com.zxq.cloud.admin;
+package com.zxq.cloud;
 
 import cn.hutool.core.date.DateUtil;
-import com.zxq.cloud.admin.controller.BaseController;
+import com.zxq.cloud.controller.BaseController;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
