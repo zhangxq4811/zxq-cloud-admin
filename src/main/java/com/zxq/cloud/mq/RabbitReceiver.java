@@ -19,6 +19,7 @@ public class RabbitReceiver {
     @RabbitListener(queues = RabbitMqConfig.MY_FIRST_QUEUE)
     public void processCpcSettleMessage(String json) {
         log.info(">>>>>>>接受到信息了<<<<<<");
+        int i = 1/0;
         log.info("队列已接受到信息===》{},成功消费",json);
     }
 }
