@@ -35,12 +35,12 @@ public class RabbitMqConfig {
 
     @Bean
     public Exchange myFirstExchange(){
-        return new DirectExchange(MY_FIRST_EXCHANGE);
+        return ExchangeBuilder.directExchange(MY_FIRST_EXCHANGE).durable(true).build();
     }
 
     @Bean
     public Queue myFirstQueue(){
-        return new Queue(MY_FIRST_QUEUE);
+        return QueueBuilder.durable(MY_FIRST_QUEUE).build();
     }
 
     @Bean
@@ -50,44 +50,57 @@ public class RabbitMqConfig {
 
     /**--------------------------死信队列配置-----------------**/
 
+    public static final String DEAD_LETTER_EXCHANGE = "DL_EXCHANGE";
+    public static final String DEAD_LETTER_QUEUE = "DL_QUEUE";
+    public static final String DEAD_LETTER_ROUTING_KEY = "DL_KEY";
+    public static final String DEAD_LETTER_REDIRECT_ROUTING_KEY = "KEY_R";
+    public static final String REDIRECT_QUEUE = "REDIRECT_QUEUE";
+
+    /**
+     * 死信队列跟交换机类型没有关系 不一定为directExchange  不影响该类型交换机的特性.
+     */
     @Bean("deadLetterExchange")
     public Exchange deadLetterExchange() {
-        return ExchangeBuilder.directExchange("DL_EXCHANGE").durable(true).build();
+        return ExchangeBuilder.directExchange(DEAD_LETTER_EXCHANGE).durable(true).build();
     }
 
+    /**
+     * 死信队列
+     */
     @Bean("deadLetterQueue")
     public Queue deadLetterQueue() {
         Map<String, Object> args = new HashMap<>(2);
-//       x-dead-letter-exchange    声明  死信交换机
-        args.put("x-dead-letter-exchange", "DL_EXCHANGE");
-//       x-dead-letter-routing-key    声明 死信路由键
-        args.put("x-dead-letter-routing-key", "KEY_R");
-        return QueueBuilder.durable("DL_QUEUE").withArguments(args).build();
-    }
-
-    @Bean("redirectQueue")
-    public Queue redirectQueue() {
-        return QueueBuilder.durable("REDIRECT_QUEUE").build();
+//       x-dead-letter-exchange    声明  死信队列Exchange
+        args.put("x-dead-letter-exchange", DEAD_LETTER_EXCHANGE);
+//       x-dead-letter-routing-key    声明 死信队列抛出异常重定向队列的routingKey(TKEY_R)
+        args.put("x-dead-letter-routing-key", DEAD_LETTER_REDIRECT_ROUTING_KEY);
+        return QueueBuilder.durable(DEAD_LETTER_QUEUE).withArguments(args).build();
     }
 
     /**
-     * 死信路由通过 DL_KEY 绑定键绑定到死信队列上.
+     * 死信队列绑定到死信交换器上.
      *
      * @return the binding
      */
     @Bean
-    public Binding deadLetterBinding() {
-        return new Binding("DL_QUEUE", Binding.DestinationType.QUEUE, "DL_EXCHANGE", "DL_KEY", null);
-
+    public Binding deadLetterBinding(Exchange deadLetterExchange, Queue deadLetterQueue) {
+        return BindingBuilder.bind(deadLetterQueue).to(deadLetterExchange).with(DEAD_LETTER_ROUTING_KEY).noargs();
     }
 
-    /**
-     * 死信路由通过 KEY_R 绑定键绑定到死信队列上.
-     *
-     * @return the binding
-     */
-    @Bean
-    public Binding redirectBinding() {
-        return new Binding("REDIRECT_QUEUE", Binding.DestinationType.QUEUE, "DL_EXCHANGE", "KEY_R", null);
-    }
+//    @Bean("redirectQueue")
+//    public Queue redirectQueue() {
+//        return QueueBuilder.durable(REDIRECT_QUEUE).build();
+//    }
+//
+//    /**
+//     * 将重定向队列通过routingKey(TKEY_R)绑定到死信队列的Exchange上
+//     *
+//     * @return the binding
+//     */
+//    @Bean
+//    public Binding redirectBinding() {
+//        return new Binding(REDIRECT_QUEUE, Binding.DestinationType.QUEUE, DEAD_LETTER_EXCHANGE, DEAD_LETTER_REDIRECT_ROUTING_KEY, null);
+//    }
+
 }
+

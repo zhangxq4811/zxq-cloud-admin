@@ -22,4 +22,13 @@ public class RabbitReceiver {
         int i = 1/0;
         log.info("队列已接受到信息===》{},成功消费",json);
     }
+
+    /**
+     * @param deadLetterMsg
+     */
+    @RabbitListener(queues = RabbitMqConfig.DEAD_LETTER_QUEUE)
+    public void processDeadLetterMessage(String deadLetterMsg) {
+        log.info("死信队列已接受到信息===》{}",deadLetterMsg);
+    }
+
 }
