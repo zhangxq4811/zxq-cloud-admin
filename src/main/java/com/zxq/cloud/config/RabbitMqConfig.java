@@ -87,20 +87,20 @@ public class RabbitMqConfig {
         return BindingBuilder.bind(deadLetterQueue).to(deadLetterExchange).with(DEAD_LETTER_ROUTING_KEY).noargs();
     }
 
-//    @Bean("redirectQueue")
-//    public Queue redirectQueue() {
-//        return QueueBuilder.durable(REDIRECT_QUEUE).build();
-//    }
-//
-//    /**
-//     * 将重定向队列通过routingKey(TKEY_R)绑定到死信队列的Exchange上
-//     *
-//     * @return the binding
-//     */
-//    @Bean
-//    public Binding redirectBinding() {
-//        return new Binding(REDIRECT_QUEUE, Binding.DestinationType.QUEUE, DEAD_LETTER_EXCHANGE, DEAD_LETTER_REDIRECT_ROUTING_KEY, null);
-//    }
+    @Bean("redirectQueue")
+    public Queue redirectQueue() {
+        return QueueBuilder.durable(REDIRECT_QUEUE).build();
+    }
+
+    /**
+     * 将重定向队列通过routingKey(TKEY_R)绑定到死信队列的Exchange上
+     *
+     * @return the binding
+     */
+    @Bean
+    public Binding redirectBinding() {
+        return new Binding(REDIRECT_QUEUE, Binding.DestinationType.QUEUE, DEAD_LETTER_EXCHANGE, DEAD_LETTER_REDIRECT_ROUTING_KEY, null);
+    }
 
 }
 

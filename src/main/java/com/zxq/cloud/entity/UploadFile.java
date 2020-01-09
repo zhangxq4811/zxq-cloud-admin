@@ -1,7 +1,7 @@
 package com.zxq.cloud.entity;
 
 
-import com.zxq.cloud.utils.NumberUtil;
+import com.zxq.cloud.util.NumberUtil;
 import lombok.Data;
 
 import java.io.Serializable;

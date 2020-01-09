@@ -1,4 +1,4 @@
-package com.zxq.cloud.utils;
+package com.zxq.cloud.util;
 
 import java.math.BigDecimal;
 
