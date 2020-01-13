@@ -26,6 +26,11 @@ public class BaseController {
     @Autowired
     private TaskService taskService;
 
+    @GetMapping("/index")
+    public String index(){
+        return "hello world";
+    }
+
     @GetMapping("/sendMsg")
     public String sendMsg(){
         String message = "send msg.....";
