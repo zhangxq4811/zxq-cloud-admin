@@ -26,7 +26,7 @@ public class BaseController {
     @Autowired
     private TaskService taskService;
 
-    @GetMapping("/index")
+    @GetMapping("/hello")
     public String index(){
         return "hello world";
     }
